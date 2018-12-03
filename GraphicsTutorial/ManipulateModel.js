@@ -6,13 +6,23 @@ var scene;
 var material;
 var colors = [0x0000FF, 0xA52A2A, 0x000080, 0x008000, 0x800080, 0x800000, 0x008080]; // blue, brown, dark blue, dark green, dark magneta, dark red, dark cyan
 var currentColor = 0;
+var loader;
 function main() {
 
     renderer.setClearColor(0x00ffff, 1); ///cyan
     renderer.setPixelRatio(window.devicePizelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-
+   /* loader = new THREE.FontLoader();
+    leader.load('/examples/fonts/helvetiker_regular.typeface.json', function (font) {
+        var textGeometry = new Three.TextGeometry('Click SPACE to change model color', {
+            font: font,
+            size: 20,
+            height: 5,
+            curveSegments: 12,
+            bevelEnabled: false,
+        });
+    });*/
     scene = new THREE.Scene();
 
 
