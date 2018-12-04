@@ -7,22 +7,15 @@ var material;
 var colors = [0x0000FF, 0xA52A2A, 0x000080, 0x008000, 0x800080, 0x800000, 0x008080]; // blue, brown, dark blue, dark green, dark magneta, dark red, dark cyan
 var currentColor = 0;
 var loader;
+var textGeo;
 function main() {
 
     renderer.setClearColor(0x00ffff, 1); ///cyan
     renderer.setPixelRatio(window.devicePizelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-   /* loader = new THREE.FontLoader();
-    leader.load('/examples/fonts/helvetiker_regular.typeface.json', function (font) {
-        var textGeometry = new Three.TextGeometry('Click SPACE to change model color', {
-            font: font,
-            size: 20,
-            height: 5,
-            curveSegments: 12,
-            bevelEnabled: false,
-        });
-    });*/
+    
+    
     scene = new THREE.Scene();
 
 
@@ -40,6 +33,33 @@ function main() {
 
     mesh.position.set(0, 0, -1000);
     scene.add(mesh);
+    //loadFont();
+    var loader = new THREE.FontLoader();
+    loader.load('examples/fonts/helvetiker_regular.typeface.json', function (font) {
+        textGeo = new THREE.TextGeometry("Love", {
+            font: font,
+            size: 80,
+            height: 10,
+            curveSegments: 12,
+            bevelEnabled: true,
+            bevelThickness: 10,
+            bevelSize: 8,
+            bevelSegments: 5
+        });
+    });
+    var text2 = document.createElement('div');
+    text2.style.position = 'absolute';
+    text2.style.width = 100;
+    text2.style.height = 500;
+    text2.style.backgroundColor = "none";
+    text2.innerHTML = "Click Space to change model Color";
+    text2.style.top = 200 + 'px';
+    text2.style.left = 200 + 'px';
+    document.body.appendChild(text2);
+
+    var text = new THREE.Mesh(textGeo, material);
+    text.position.set = (0, 20, -1000);
+    scene.add(text);
 
     requestAnimationFrame(render);
 
@@ -83,5 +103,32 @@ function render() {
 
 function Cube(mesh) {
 }
+
+function loadFont() {
+    var loader = new THREE.FontLoader();
+    loader.load('font/PlayfairDisplay-Black.ttf', function (res) {
+        font = res;
+        createText();
+    });
+
+}
+
+function createText() {
+    var textGeo = new THREE.TextGeometry("Love", {
+        font: font,
+        size: 80,
+        height: 10,
+        curveSegments: 12,
+        bevelEnabled: true,
+        bevelThickness: 10,
+        bevelSize: 8,
+        bevelSegments: 5
+    });
+
+    var text = new THREE.Mesh(textGeo, material);
+    scene.add(text);
+    //render();
+}
+
 
 //document.body.appendChild(renderer.domElement);
